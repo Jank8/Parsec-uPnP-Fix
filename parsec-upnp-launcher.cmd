@@ -3,10 +3,10 @@ setlocal EnableExtensions
 title Parsec uPnP Fix
 
 REM ---------------------------------------------------------------------------
-REM  One-click launcher for parsec-upnp.ps1
+REM  One-click launcher for parsec-upnp-powershell.ps1
 REM  Passes any arguments through, e.g.:
-REM      parsec-upnp.cmd -Mode List
-REM      parsec-upnp.cmd -Mode Remove
+REM      parsec-upnp-launcher.cmd -Mode List
+REM      parsec-upnp-launcher.cmd -Mode Remove
 REM ---------------------------------------------------------------------------
 
 echo ================================================================
@@ -18,7 +18,7 @@ set "PS=pwsh"
 where pwsh >nul 2>&1
 if errorlevel 1 set "PS=powershell"
 
-"%PS%" -NoProfile -ExecutionPolicy Bypass -File "%~dp0parsec-upnp.ps1" %*
+"%PS%" -NoProfile -ExecutionPolicy Bypass -File "%~dp0parsec-upnp-powershell.ps1" %*
 set "RC=%errorlevel%"
 
 echo.

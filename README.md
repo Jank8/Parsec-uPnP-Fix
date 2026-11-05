@@ -137,7 +137,7 @@ Parsec that refuses to ask):
 | UDP      | 30640    | `<this PC>`:30640 | Parsec client port   |
 | UDP      | 8000-8010| `<this PC>`:8000-8010 | Parsec host range |
 
-`parsec-upnp.ps1` does this automatically:
+`parsec-upnp-powershell.ps1` does this automatically:
 
 1. finds the gateway and the local IP from the default route,
 2. discovers the router over SSDP (`M-SEARCH` to `239.255.255.250:1900`),
@@ -170,31 +170,31 @@ After the fix the client log bounces straight into a stream:
 
 ```powershell
 # create the missing forwardings (default)
-.\parsec-upnp.ps1
+.\parsec-upnp-powershell.ps1
 
 # only show what the router currently has
-.\parsec-upnp.ps1 -Mode List
+.\parsec-upnp-powershell.ps1 -Mode List
 
 # remove the forwardings created for this PC
-.\parsec-upnp.ps1 -Mode Remove
+.\parsec-upnp-powershell.ps1 -Mode Remove
 
 # custom client port / host range
-.\parsec-upnp.ps1 -ClientPort 30640 -HostRange 8000-8020
+.\parsec-upnp-powershell.ps1 -ClientPort 30640 -HostRange 8000-8020
 ```
 
-Or just double-click **`parsec-upnp.cmd`** — a one-click wrapper that passes any
+Or just double-click **`parsec-upnp-launcher.cmd`** — a one-click wrapper that passes any
 arguments through.
 
 ### CMD edition
 
-**`upnp-fix.cmd`** does the same job with `cmd.exe` + the built-in `curl.exe` only.
+**`parsec-upnp-cmdedition.cmd`** does the same job with `cmd.exe` + the built-in `curl.exe` only.
 It cannot do SSDP discovery (cmd has no UDP sockets), so it either probes a short
 list of common IGD URLs or takes the URL as an argument:
 
 ```bat
-upnp-fix.cmd
-upnp-fix.cmd http://192.168.100.1:49652/49652gatedesc.xml
-upnp-fix.cmd "" 30640
+parsec-upnp-cmdedition.cmd
+parsec-upnp-cmdedition.cmd http://192.168.100.1:49652/49652gatedesc.xml
+parsec-upnp-cmdedition.cmd "" 30640
 ```
 
 The CMD edition always re-adds all forwardings (most routers treat an identical
@@ -264,7 +264,7 @@ Useful extra data while debugging:
 
 Batch has no way to open a UDP socket, so SSDP discovery is impossible in pure
 `cmd`. Everything else (HTTP + SOAP) is pure CMD via `curl.exe`, which is why
-`upnp-fix.cmd` exists and works — it just needs the description URL when the
+`parsec-upnp-cmdedition.cmd` exists and works — it just needs the description URL when the
 router hides it on a non-standard port.
 
 ---
@@ -272,7 +272,7 @@ router hides it on a non-standard port.
 ## Cleanup
 
 ```powershell
-.\parsec-upnp.ps1 -Mode Remove
+.\parsec-upnp-powershell.ps1 -Mode Remove
 ```
 
 or remove the entries manually in the router web UI (UPnP / NAT → port forwarding).

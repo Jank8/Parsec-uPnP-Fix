@@ -6,17 +6,17 @@ REM ===========================================================================
 REM  Parsec uPnP Fix - pure CMD edition (uses only built-in curl.exe)
 REM
 REM  Usage:
-REM      upnp-fix.cmd [IGD_DESCRIPTION_URL] [CLIENT_PORT]
+REM      parsec-upnp-cmdedition.cmd [IGD_DESCRIPTION_URL] [CLIENT_PORT]
 REM
 REM  Examples:
-REM      upnp-fix.cmd
-REM      upnp-fix.cmd http://192.168.100.1:49652/49652gatedesc.xml
-REM      upnp-fix.cmd "" 30640
+REM      parsec-upnp-cmdedition.cmd
+REM      parsec-upnp-cmdedition.cmd http://192.168.100.1:49652/49652gatedesc.xml
+REM      parsec-upnp-cmdedition.cmd "" 30640
 REM
 REM  NOTE: pure CMD cannot send SSDP multicast (no UDP sockets in cmd), so the
 REM  router description URL is either passed as the first argument or taken
 REM  from the built-in candidate list below. For fully automatic discovery
-REM  use parsec-upnp.ps1 / parsec-upnp.cmd instead.
+REM  use parsec-upnp-powershell.ps1 / parsec-upnp-launcher.cmd instead.
 REM ===========================================================================
 
 if "%~1"=="" goto :start
@@ -88,9 +88,9 @@ for %%U in (
 if not defined DESCURL (
     echo.
     echo [FAIL] Could not find the router description page by itself.
-    echo        Run parsec-upnp.ps1 once - it discovers it over SSDP - or pass
+    echo        Run parsec-upnp-powershell.ps1 once - it discovers it over SSDP - or pass
     echo        the URL manually:
-    echo            upnp-fix.cmd http://192.168.100.1:PORT/PORTgatedesc.xml
+    echo            parsec-upnp-cmdedition.cmd http://192.168.100.1:PORT/PORTgatedesc.xml
     goto :end
 )
 

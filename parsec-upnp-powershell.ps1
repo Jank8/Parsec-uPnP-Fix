@@ -31,13 +31,13 @@
     Parsec host port range to forward. Default: 8000-8010.
 
 .EXAMPLE
-    .\parsec-upnp.ps1
+    .\parsec-upnp-powershell.ps1
 
 .EXAMPLE
-    .\parsec-upnp.ps1 -Mode List
+    .\parsec-upnp-powershell.ps1 -Mode List
 
 .EXAMPLE
-    .\parsec-upnp.ps1 -Mode Remove
+    .\parsec-upnp-powershell.ps1 -Mode Remove
 
 .NOTES
     Tested with Parsec 150-105c behind a Huawei HG8245X6-10 (Netia, CGNAT).

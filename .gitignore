@@ -1,0 +1,9 @@
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs / captures
+*.log
+*.etl
+*.txt
+!README.md
